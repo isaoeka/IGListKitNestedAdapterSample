@@ -1,0 +1,10 @@
+name: IGListKitNestedAdapterSample
+options:
+  bundleIdPrefix: info.isaoeka
+  developmentLanguage: ja
+targets:
+  IGListKitNestedAdapterSample:
+    type: application
+    platform: iOS
+    deploymentTarget: "13.0"
+    sources: [IGListKitNestedAdapterSample]
