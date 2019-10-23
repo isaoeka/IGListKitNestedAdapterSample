@@ -8,3 +8,5 @@ targets:
     platform: iOS
     deploymentTarget: "13.0"
     sources: [IGListKitNestedAdapterSample]
+    dependencies:
+      - carthage: IGListKit

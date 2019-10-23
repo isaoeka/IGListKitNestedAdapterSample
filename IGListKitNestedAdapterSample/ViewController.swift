@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IGListKit
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,4 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
 }
-
