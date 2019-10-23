@@ -18,10 +18,19 @@ final class ViewController: UIViewController {
     // MARK: Properties
 
     private lazy var adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
-    private let listData: [ListDiffable] = [
-        FeedSectionEntity(id: 1, titles: [String](repeating: "Section 1", count: 20)),
-        FeedSectionEntity(id: 2, titles: [String](repeating: "Section 2", count: 20)),
-        FeedSectionEntity(id: 3, titles: [String](repeating: "Section 3", count: 20))
+    private let sectionEntites: [ListDiffable] = [
+        NestedFeedSectionEntity(id: 1, sections: [
+            FeedSectionEntity(id: 101, rows: [LabelRowEntity](repeating: LabelRowEntity(id: UUID().uuidString, title: "A"), count: 10))
+        ]),
+        FeedSectionEntity(id: 2, rows: [LabelRowEntity](repeating: LabelRowEntity(id: UUID().uuidString, title: "B"), count: 5)),
+        NestedFeedSectionEntity(id: 3, sections: [
+            FeedSectionEntity(id: 301, rows: [LabelRowEntity](repeating: LabelRowEntity(id: UUID().uuidString, title: "C"), count: 10))
+        ]),
+        FeedSectionEntity(id: 4, rows: [LabelRowEntity](repeating: LabelRowEntity(id: UUID().uuidString, title: "D"), count: 5)),
+        NestedFeedSectionEntity(id: 5, sections: [
+            FeedSectionEntity(id: 501, rows: [LabelRowEntity](repeating: LabelRowEntity(id: UUID().uuidString, title: "E"), count: 10))
+        ]),
+        FeedSectionEntity(id: 6, rows: [LabelRowEntity](repeating: LabelRowEntity(id: UUID().uuidString, title: "F"), count: 5)),
     ]
 
     // MARK: Lifecycle
@@ -44,13 +53,15 @@ final class ViewController: UIViewController {
 extension ViewController: ListAdapterDataSource {
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return listData
+        return sectionEntites
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         switch object {
         case is FeedSectionEntity:
             return FeedSectionController()
+        case is NestedFeedSectionEntity:
+            return NestedFeedSectionController()
         default:
             fatalError("Impossible case")
         }

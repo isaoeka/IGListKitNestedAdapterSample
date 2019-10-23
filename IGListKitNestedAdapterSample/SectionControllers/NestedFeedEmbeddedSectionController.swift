@@ -1,19 +1,19 @@
 //
-//  FeedSectionController.swift
+//  NestedFeedEmbeddedSectionController.swift
 //  IGListKitNestedAdapterSample
 //
-//  Created by isaoeka on 2019/10/23.
+//  Created by isaoeka on 2019/10/24.
 //
 
 import IGListKit
 
-final class FeedSectionController: ListSectionController {
+final class NestedFeedEmbeddedSectionController: ListSectionController {
 
     private var feedSectionEntity: FeedSectionEntity!
 
     override init() {
         super.init()
-        inset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        inset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 0)
         minimumLineSpacing = 4
         minimumInteritemSpacing = 4
     }
@@ -28,13 +28,13 @@ final class FeedSectionController: ListSectionController {
 
     override func sizeForItem(at index: Int) -> CGSize {
         let collectionViewSize = collectionContext!.containerSize(for: self)
-        return CGSize(width: collectionViewSize.width, height: 50)
+        return CGSize(width: 100, height: collectionViewSize.height)
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         let cell = collectionContext!.dequeueReusableCell(withNibName: "LabelCollectionViewCell", bundle: nil, for: self, at: index) as! LabelCollectionViewCell
         let title = feedSectionEntity.rows[index].title
-        cell.title = "\(title): \(String(format: "Section: % 2d Index: % 3d", section, index))"
+        cell.title = "\(title)\n\(String(format: "Section: % 2d\nIndex: % 3d", section, index))"
         return cell
     }
 }

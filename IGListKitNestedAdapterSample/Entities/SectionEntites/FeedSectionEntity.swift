@@ -10,11 +10,11 @@ import IGListKit
 final class FeedSectionEntity {
 
     let id: Int
-    let titles: [String]
+    let rows: [LabelRowEntity]
 
-    init(id: Int, titles: [String]) {
+    init(id: Int, rows: [LabelRowEntity]) {
         self.id = id
-        self.titles = titles
+        self.rows = rows
     }
 }
 
@@ -29,6 +29,14 @@ extension FeedSectionEntity: ListDiffable {
             return false
         }
         return id == object.id
-            && titles == object.titles
+            && rows == object.rows
+    }
+}
+
+extension FeedSectionEntity: Equatable {
+
+    static func == (lhs: FeedSectionEntity, rhs: FeedSectionEntity) -> Bool {
+        return lhs.id == rhs.id
+            && lhs.rows == rhs.rows
     }
 }

@@ -30,7 +30,13 @@ extension LabelCollectionViewCell {
 
     private func initializeViews() {
 
-        label.backgroundColor = .lightGray
+        layer.masksToBounds = true
+        layer.cornerRadius = 4
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.cyan.cgColor
+
+        label.backgroundColor = .clear
+        label.numberOfLines = 0
         label.text = ""
     }
 }
