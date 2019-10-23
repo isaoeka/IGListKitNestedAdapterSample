@@ -32,7 +32,7 @@ final class NestedFeedEmbeddedSectionController: ListSectionController {
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
-        let cell = collectionContext!.dequeueReusableCell(withNibName: "LabelCollectionViewCell", bundle: nil, for: self, at: index) as! LabelCollectionViewCell
+        let cell = collectionContext!.dequeueReusableCellWithNib(LabelCollectionViewCell.self, for: self, at: index)
         let title = feedSectionEntity.rows[index].title
         cell.title = "\(title)\n\(String(format: "Section: % 2d\nIndex: % 3d", section, index))"
         return cell

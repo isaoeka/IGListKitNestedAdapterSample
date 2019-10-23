@@ -34,7 +34,7 @@ final class NestedFeedSectionController: ListSectionController {
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
-        let cell = collectionContext!.dequeueReusableCell(withNibName: "EmbeddedCollectionViewCell", bundle: nil, for: self, at: index) as! EmbeddedCollectionViewCell
+        let cell = collectionContext!.dequeueReusableCellWithNib(EmbeddedCollectionViewCell.self, for: self, at: index)
         adapter.collectionView = cell.collectionView
         return cell
     }
